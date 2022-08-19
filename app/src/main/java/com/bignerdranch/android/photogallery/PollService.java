@@ -7,7 +7,6 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.SystemClock;
@@ -15,7 +14,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -89,7 +87,7 @@ public class PollService extends IntentService {
             Log.i(TAG, "Got a new result: " + resultId);
             QueryPreferences.setLastResultId(this, resultId);
 
-            showBackgroundNotification();
+            broadcastShowingBackgroundNotification();
 
         } else {
             Log.i(TAG, "Got an old result: " + resultId);
@@ -98,7 +96,7 @@ public class PollService extends IntentService {
 
     }
 
-    private void showBackgroundNotification() {
+    private void broadcastShowingBackgroundNotification() {
         Log.i(TAG, "Send a notification");
 
         Notification notification = buildNotification();
