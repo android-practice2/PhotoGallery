@@ -21,6 +21,9 @@ import androidx.core.app.NotificationManagerCompat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * alarm -> service -> broadcast -> receiver 1 -> receiver 2
+ */
 public class PollService extends IntentService {
     private static final String TAG = "PollService";
     private static final long POLL_INTERVAL_MS = TimeUnit.SECONDS.toMillis(60);//>=60s is effected
